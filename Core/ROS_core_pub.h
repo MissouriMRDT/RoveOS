@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_core_pub.h                                                                  ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific public functions.                                     /▀/'  ▄▀ 
+*   Defines RoveOS core public functions.                                          /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

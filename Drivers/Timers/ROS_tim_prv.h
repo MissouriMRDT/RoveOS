@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_tim_prv.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS timer private functions.                                        /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

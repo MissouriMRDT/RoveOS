@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_can_pub.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific public functions.                                     /▀/'  ▄▀ 
+*   Defines RoveOS CANbus public functions.                                        /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

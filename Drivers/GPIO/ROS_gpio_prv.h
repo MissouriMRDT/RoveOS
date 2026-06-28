@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_gpio_prv.h                                                                  ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS GPIO private functions.                                         /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

@@ -2,7 +2,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_task.c                                                                      ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Implements project-specific functions.                                         /▀/'  ▄▀ 
+*   Implements RoveOS task and scheduling functions.                               /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

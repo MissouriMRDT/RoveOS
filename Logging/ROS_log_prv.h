@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   PRJ_main_prv.h                                                                  ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS logging private functions.                                      /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

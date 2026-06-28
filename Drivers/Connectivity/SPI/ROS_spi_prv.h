@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_spi_prv.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS SPI private functions.                                          /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

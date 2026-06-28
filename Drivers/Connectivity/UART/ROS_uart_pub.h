@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_uart_pub.h                                                                  ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific public functions.                                     /▀/'  ▄▀ 
+*   Defines RoveOS UART and USART public functions.                                /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_task_prv.h                                                                  ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS task and scheduling private functions.                          /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

@@ -2,7 +2,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_main.c                                                                      ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Implements project-specific functions.                                         /▀/'  ▄▀ 
+*   Implements RoveOS core functions.                                              /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

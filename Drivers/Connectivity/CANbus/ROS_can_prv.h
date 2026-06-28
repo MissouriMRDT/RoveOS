@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_can_prv.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS CANbus private functions.                                       /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

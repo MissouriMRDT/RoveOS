@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_tim_pub.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific public functions.                                     /▀/'  ▄▀ 
+*   Defines RoveOS timer public functions.                                         /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

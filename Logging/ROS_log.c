@@ -2,7 +2,7 @@
 *                                                                                     ▄▄▄,/,
 *   PRJ_main.c                                                                      ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Implements project-specific functions.                                         /▀/'  ▄▀ 
+*   Implements RoveOS logging functions.                                           /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

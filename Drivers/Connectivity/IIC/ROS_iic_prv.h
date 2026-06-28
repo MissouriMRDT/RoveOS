@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_iic_prv.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS IIC private functions.                                          /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

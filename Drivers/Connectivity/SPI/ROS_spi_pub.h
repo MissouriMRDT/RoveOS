@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_spi_pub.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific public functions.                                     /▀/'  ▄▀ 
+*   Defines RoveOS I2C public functions.                                           /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

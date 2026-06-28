@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_adc_prv.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS ADC private functions.                                          /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

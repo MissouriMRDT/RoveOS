@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_uart_prv.h                                                                  ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific private functions.                                    /▀/'  ▄▀ 
+*   Defines RoveOS UART and USART private functions.                               /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

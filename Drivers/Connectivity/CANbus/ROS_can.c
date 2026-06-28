@@ -2,7 +2,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_can.c                                                                       ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Implements project-specific functions.                                         /▀/'  ▄▀ 
+*   Implements RoveOS CANbus functions.                                            /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

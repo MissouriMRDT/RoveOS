@@ -2,7 +2,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_tim.c                                                                       ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Implements project-specific functions.                                         /▀/'  ▄▀ 
+*   Implements RoveOS timer functions.                                             /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

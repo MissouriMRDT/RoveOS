@@ -1,11 +1,11 @@
-#ifndef ROS_IIC_PUB_H
-#define ROS_IIC_PUB_H
+#ifndef ROS_PLAT_NUCLEO_PRV_H
+#define ROS_PLAT_NUCLEO_PRV_H
 
 /****************************************************************************************************
 *                                                                                     ▄▄▄,/,
-*   ROS_iic_pub.h                                                                   ▄▀  ,/▄ 
+*   ROS_plat_nucleo_prv.h                                                           ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines RoveOS IIC public functions.                                           /▀/'  ▄▀ 
+*   Defines platform-specific private functions for the Nucleo H563ZI.             /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 
@@ -25,4 +25,4 @@
 *   Private Functions
 ****************************************************************************************************/
 
-#endif /* ROS_IIC_PUB_H */
+#endif /* ROS_PLAT_NUCLEO_PRV_H */

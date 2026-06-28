@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_adc_pub.h                                                                   ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific public functions.                                     /▀/'  ▄▀ 
+*   Defines RoveOS ADC public functions.                                           /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

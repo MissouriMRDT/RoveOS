@@ -2,7 +2,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_uart.c                                                                      ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Implements project-specific functions.                                         /▀/'  ▄▀ 
+*   Implements RoveOS UART and USART functions.                                    /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

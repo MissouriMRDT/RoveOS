@@ -5,7 +5,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_task_pub.h                                                                  ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Defines project-specific public functions.                                     /▀/'  ▄▀ 
+*   Defines RoveOS task and scheduling public functions.                           /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 

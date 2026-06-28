@@ -1,4 +1,5 @@
-# STM32Daughterboard_Software
-The STM32 project generated in CubeMX for the STM32 Daughterboard. This has the clocks, ethernet, and debugging pre-configured.
+# RoveOS
+MRDT's custom embedded real-time operating system designed to run on the RoveNode H5 that hosts the STM32H563RI6 microcontroller. RoveOS is also supported on the STM Nucleo-H563ZI.
 
-**Note:** Please refer to the [STM32 CubeMX Configuration Guide](https://mailmissouri.sharepoint.com/:w:/r/sites/SDELC-MarsRoverDesignTeam-Ogrp/_layouts/15/Doc.aspx?sourcedoc=%7BD44263E7-B9E8-451B-91D2-369557EAB64A%7D&file=STM32%20CubeMX%20Configuration.docx&action=default&mobileredirect=true) on how to set up the various peripherals for your project.
+RoveOS is designed for beginner-friendly embedded development, featuring easy STM HAL configuration, task scheduling, event handling, logging, debug statements, and task monitor.
+RoveOS can be included in an STM32CubeIDE project as a submodule along side project-specific implementation.

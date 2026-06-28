@@ -2,7 +2,7 @@
 *                                                                                     ▄▄▄,/,
 *   ROS_gpio.c                                                                      ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
-*   Implements project-specific functions.                                         /▀/'  ▄▀ 
+*   Implements RoveOS GPIO functions.                                              /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
 ****************************************************************************************************/
 
