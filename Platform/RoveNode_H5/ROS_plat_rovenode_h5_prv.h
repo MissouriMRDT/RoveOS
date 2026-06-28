@@ -1,9 +1,9 @@
-#ifndef ROS_PLAT_ROVENODE_PRV_H
-#define ROS_PLAT_ROVENODE_PRV_H
+#ifndef ROS_PLAT_ROVENODE_H5_PRV_H
+#define ROS_PLAT_ROVENODE_H5_PRV_H
 
 /****************************************************************************************************
 *                                                                                     ▄▄▄,/,
-*   ROS_plat_rovenode_prv.h                                                         ▄▀  ,/▄ 
+*   ROS_plat_rovenode_h5_prv.h                                                      ▄▀  ,/▄ 
 *                                                                                  ▐▌ ,/' ▐▌
 *   Defines platform-specific private functions for the RoveNode H5.               /▀/'  ▄▀ 
 *                                                                                  └' ▀▀▀   
@@ -12,6 +12,13 @@
 /****************************************************************************************************
 *   Includes
 ****************************************************************************************************/
+/*  Public   */
+/*  Private  */
+#if (__has_include("stm32h5xx_hal.h"))
+#include "stm32h5xx_hal.h"
+#include "stm32h5xx_hal_conf.h"
+#include "stm32h5xx_it.h"
+#endif
 
 /****************************************************************************************************
 *   Macros
@@ -29,4 +36,4 @@
 *   Private Functions
 ****************************************************************************************************/
 
-#endif /* ROS_PLAT_ROVENODE_PRV_H */
+#endif /* ROS_PLAT_ROVENODE_H5_PRV_H */
