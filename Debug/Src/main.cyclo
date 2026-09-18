@@ -1,0 +1,9 @@
+../Src/main.c:82:5:main	9
+../Src/main.c:300:6:SystemClock_Config	4
+../Src/main.c:361:13:MX_ETH_Init	2
+../Src/main.c:410:13:MX_ICACHE_Init	3
+../Src/main.c:442:13:MX_GPIO_Init	1
+../Src/main.c:477:6:HAL_ETH_RxAllocateCallback	2
+../Src/main.c:494:6:HAL_ETH_RxLinkCallback	1
+../Src/main.c:503:6:MPU_Config	1
+../Src/main.c:539:6:Error_Handler	1
