@@ -40,10 +40,60 @@ uint8_t DHCP_state = DHCP_OFF;
 
 static struct udp_pcb *upcb;
 
+void udp_send_test_packet()
+{
+    struct udp_pcb *my_pcb;
+    struct pbuf *p;
+    ip_addr_t DestIPaddr;
+    uint16_t DestPort = 5000;    // The port your laptop tool is listening on
+    uint16_t LocalPort = 5000;   // The port your Nucleo binds to
+
+    char *msg = "Hello from STM32H5 lwIP!";
+    uint16_t msg_len = strlen(msg);
+
+    /* 1. Create a new UDP control block structure */
+    my_pcb = udp_new();
+
+    if (my_pcb != NULL)
+    {
+        /* 2. Set up the target destination IP address (Your Laptop's IP) */
+        IP4_ADDR(&DestIPaddr, 192, 168, 1, 100); // <-- Change to your laptop's actual IP
+
+        /* 3. Bind the local port (optional but good practice) */
+        udp_bind(my_pcb, IP_ADDR_ANY, LocalPort);
+
+        /* 4. Connect the PCB to the remote IP and Port */
+        err_t err = udp_connect(my_pcb, &DestIPaddr, DestPort);
+
+        if (err == ERR_OK)
+        {
+            /* 5. Allocate an lwIP packet buffer (pbuf) from the RAM pool */
+            // RAM pool type ensures contiguous memory space for the payload string
+            p = pbuf_alloc(PBUF_TRANSPORT, msg_len, PBUF_RAM);
+
+            if (p != NULL)
+            {
+                /* 6. Copy your text string data into the allocated pbuf payload pointer */
+                memcpy(p->payload, msg, msg_len);
+
+                /* 7. Transmit the UDP packet payload over the network driver */
+                udp_send(my_pcb, p);
+
+                /* 8. CRITICAL: Free the pbuf pointer structure immediately to prevent RAM leaks */
+                pbuf_free(p);
+            }
+        }
+
+        /* 9. Delete the PCB instance if you don't intend to stay permanently connected */
+        udp_remove(my_pcb);
+    }
+}
+
 /* Callback function executed when a UDP packet is received */
 void udp_led_recv_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
-    if (p != NULL)
+	udp_send_test_packet();
+	if (p != NULL)
     {
         /* Check if packet matches "LED_ON" */
         if (strncmp((char *)p->payload, "LED_ON", 6) == 0)
