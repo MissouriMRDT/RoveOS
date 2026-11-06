@@ -210,11 +210,7 @@
   */
 #define  USE_HAL_ADC_REGISTER_CALLBACKS       0U    /* ADC register callback disabled       */
 <<<<<<< Updated upstream:Inc/stm32h5xx_hal_conf.h
-<<<<<<< Updated upstream:Inc/stm32h5xx_hal_conf.h
 #define  USE_HAL_CCB_REGISTER_CALLBACKS           0U /* CCB register callback disabled       */
-=======
-#define  USE_HAL_CCB_REGISTER_CALLBACKS       0U    /* CCB register callback disabled       */
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Inc/stm32h5xx_hal_conf.h
 =======
 #define  USE_HAL_CCB_REGISTER_CALLBACKS       0U    /* CCB register callback disabled       */
 >>>>>>> Stashed changes:RoveNodeLWIP/Core/Inc/stm32h5xx_hal_conf.h

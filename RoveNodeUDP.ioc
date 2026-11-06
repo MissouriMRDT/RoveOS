@@ -74,15 +74,11 @@ PA1.GPIOParameters=GPIO_Speed_Default_HIGH
 PA1.GPIO_Speed_Default_HIGH=GPIO_SPEED_FREQ_HIGH
 PA1.Mode=RMII
 <<<<<<< Updated upstream:RoveNodeUDP.ioc
-<<<<<<< Updated upstream:RoveNodeUDP.ioc
 PA1.Signal=ETH_REF_CLK
 PA13(JTMS/SWDIO).Mode=Serial_Wire
 PA13(JTMS/SWDIO).Signal=DEBUG_JTMS-SWDIO
 PA14(JTCK/SWCLK).Mode=Serial_Wire
 PA14(JTCK/SWCLK).Signal=DEBUG_JTCK-SWCLK
-=======
-PA1.Signal=ETH_RMII_REF_CLK
->>>>>>> Stashed changes:RoveNodeLWIP/RoveNodeLWIP.ioc
 =======
 PA1.Signal=ETH_RMII_REF_CLK
 >>>>>>> Stashed changes:RoveNodeLWIP/RoveNodeLWIP.ioc
@@ -151,7 +147,6 @@ ProjectManager.UAScriptAfterPath=
 ProjectManager.UAScriptBeforePath=
 ProjectManager.UnderRoot=true
 <<<<<<< Updated upstream:RoveNodeUDP.ioc
-<<<<<<< Updated upstream:RoveNodeUDP.ioc
 ProjectManager.functionlistsort=1-SystemClock_Config-RCC-false-HAL-false,2-MX_GPIO_Init-GPIO-false-HAL-true,3-MX_ETH_Init-ETH-false-HAL-true,4-MX_ICACHE_Init-ICACHE-false-HAL-true,0-MX_CORTEX_M33_NS_Init-CORTEX_M33_NS-false-HAL-true,0-MX_PWR_Init-PWR-false-HAL-true
 RCC.ADCFreq_Value=32000000
 RCC.AHBFreq_Value=32000000
@@ -161,8 +156,6 @@ RCC.APB2Freq_Value=32000000
 RCC.APB2TimFreq_Value=32000000
 RCC.APB3Freq_Value=32000000
 =======
-=======
->>>>>>> Stashed changes:RoveNodeLWIP/RoveNodeLWIP.ioc
 ProjectManager.functionlistsort=1-SystemClock_Config-RCC-false-HAL-false,2-MX_GPIO_Init-GPIO-false-HAL-true,3-MX_ETH_Init-ETH-true-HAL-false,4-MX_ICACHE_Init-ICACHE-false-HAL-true,0-MX_CORTEX_M33_NS_Init-CORTEX_M33_NS-false-HAL-true,0-MX_PWR_Init-PWR-false-HAL-true
 RCC.ADCFreq_Value=250000000
 RCC.AHBFreq_Value=250000000
@@ -171,9 +164,6 @@ RCC.APB1TimFreq_Value=250000000
 RCC.APB2Freq_Value=250000000
 RCC.APB2TimFreq_Value=250000000
 RCC.APB3Freq_Value=250000000
-<<<<<<< Updated upstream:RoveNodeUDP.ioc
->>>>>>> Stashed changes:RoveNodeLWIP/RoveNodeLWIP.ioc
-=======
 >>>>>>> Stashed changes:RoveNodeLWIP/RoveNodeLWIP.ioc
 RCC.CECFreq_Value=32000
 RCC.CKPERFreq_Value=32000000

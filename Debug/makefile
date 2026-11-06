@@ -61,13 +61,8 @@ main-build: RoveNodeUDP.elf secondary-outputs
 
 # Tool invocations
 <<<<<<< Updated upstream:Debug/makefile
-<<<<<<< Updated upstream:Debug/makefile
 RoveNodeUDP.elf RoveNodeUDP.map: $(OBJS) $(USER_OBJS) /Users/vexas/Documents/GitHub/RoveOS/STM32H563RITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-gcc -o "RoveNodeUDP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"/Users/vexas/Documents/GitHub/RoveOS/STM32H563RITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RoveNodeUDP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-=======
-RoveNodeLWIP.elf RoveNodeLWIP.map: $(OBJS) $(USER_OBJS) /Users/vexas/Documents/GitHub/RoveOS/RoveNodeLWIP/STM32H563RITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "RoveNodeLWIP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"/Users/vexas/Documents/GitHub/RoveOS/RoveNodeLWIP/STM32H563RITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RoveNodeLWIP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
->>>>>>> Stashed changes:RoveNodeLWIP/Debug/makefile
 =======
 RoveNodeLWIP.elf RoveNodeLWIP.map: $(OBJS) $(USER_OBJS) /Users/vexas/Documents/GitHub/RoveOS/RoveNodeLWIP/STM32H563RITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-gcc -o "RoveNodeLWIP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"/Users/vexas/Documents/GitHub/RoveOS/RoveNodeLWIP/STM32H563RITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RoveNodeLWIP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
