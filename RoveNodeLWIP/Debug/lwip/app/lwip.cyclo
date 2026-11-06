@@ -1,5 +1,0 @@
-../lwip/app/lwip.c:211:6:udp_send_test_packet	4
-../lwip/app/lwip.c:261:6:udp_led_recv_callback	4
-../lwip/app/lwip.c:283:6:udp_led_server_init	3
-../lwip/app/lwip.c:298:6:ethernet_link_status_updated	2
-../lwip/app/lwip.c:318:6:Ethernet_Link_Periodic_Handle	2

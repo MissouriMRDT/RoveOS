@@ -55,11 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-<<<<<<< Updated upstream:Src/stm32h5xx_it.c
 extern ETH_HandleTypeDef heth;
-=======
-
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/stm32h5xx_it.c
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -202,7 +198,6 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32h5xx.s).                    */
 /******************************************************************************/
 
-<<<<<<< Updated upstream:Src/stm32h5xx_it.c
 /**
   * @brief This function handles Ethernet global interrupt.
   */
@@ -217,8 +212,6 @@ void ETH_IRQHandler(void)
   /* USER CODE END ETH_IRQn 1 */
 }
 
-=======
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/stm32h5xx_it.c
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

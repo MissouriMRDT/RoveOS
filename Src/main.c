@@ -1,16 +1,4 @@
 /* USER CODE BEGIN Header */
-<<<<<<< Updated upstream:Src/main.c
-=======
-
-/*
-
-This is used to test the RoveNode's PHY. This has LwIP so when we get to it, nothing else changes. 
-
-*/
-
-
-
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 /**
   ******************************************************************************
   * @file           : main.c
@@ -34,25 +22,10 @@ This is used to test the RoveNode's PHY. This has LwIP so when we get to it, not
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-<<<<<<< Updated upstream:Src/main.c
 #include <stdio.h>
 #include <string.h>
 #include "core_cm33.h"
 
-=======
-#include "lwip.h"
-#include "ethernetif.h"
-#include "lwip/opt.h"
-#include "lwip/init.h"
-#include "netif/etharp.h"
-#include "lwip/netif.h"
-#include "lwip/timeouts.h"
-#if LWIP_DHCP
-#include "lwip/dhcp.h"
-#endif
-
-#include "cachel1_armv7.h"
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -62,12 +35,7 @@ This is used to test the RoveNode's PHY. This has LwIP so when we get to it, not
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-<<<<<<< Updated upstream:Src/main.c
 #define TX_PACKET_SIZE 60
-=======
-
-#define LAN8742A_PHY_ADDRESS 0
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 
 /* USER CODE END PD */
 
@@ -85,42 +53,26 @@ ETH_DMADescTypeDef  DMATxDscrTab[ETH_TX_DESC_CNT]; /* Ethernet Tx DMA Descriptor
 ETH_HandleTypeDef heth;
 
 /* USER CODE BEGIN PV */
-<<<<<<< Updated upstream:Src/main.c
 // Allocate a buffer pool. ETH_RX_DESC_CNT is typically 4 (defined by CubeMX)
 // 4 buffers * 1536 bytes each = a dedicated space in RAM for incoming frames
 __attribute__((aligned(4))) uint8_t Rx_Buff[ETH_RX_DESC_CNT][ETH_MAX_PACKET_SIZE];
 /* USER CODE END PV */
 
 
-=======
-extern struct netif gnetif;
-/* USER CODE END PV */
-
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MPU_Config(void);
 static void MX_GPIO_Init(void);
-<<<<<<< Updated upstream:Src/main.c
 static void MX_ETH_Init(void);
 static void MX_ICACHE_Init(void);
 /* USER CODE BEGIN PFP */
 
-=======
-static void MX_ICACHE_Init(void);
-/* USER CODE BEGIN PFP */
-static void Netif_Config(void);
-void Test_ETH_Transmit(void);
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-<<<<<<< Updated upstream:Src/main.c
 
-=======
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 /* USER CODE END 0 */
 
 /**
@@ -131,10 +83,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-<<<<<<< Updated upstream:Src/main.c
-=======
-	SCB_DisableDCache();
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 
   /* USER CODE END 1 */
 
@@ -159,7 +107,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-<<<<<<< Updated upstream:Src/main.c
   MX_ETH_Init();
   MX_ICACHE_Init();
   /* USER CODE BEGIN 2 */
@@ -329,57 +276,11 @@ int main(void)
 	  }
   }
 
-=======
-  MX_ICACHE_Init();
-  /* USER CODE BEGIN 2 */
-//  lwip_init();
-//  Netif_Config();
-//  udp_led_server_init();
-  MX_ETH_Init();
-  if (HAL_ETH_Start(&heth) == HAL_OK) // REMOVE FOR LWIP
-	{
-
-	} else {
-	  while(1){
-		  HAL_GPIO_TogglePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin);
-		  HAL_Delay(5000);
-	  }
-	}
-
-//  uint32_t phy_reg = 0;
-//  /* Read Register 0 (Basic Control Register) */
-//  HAL_ETH_ReadPHYRegister(&heth, LAN8742A_PHY_ADDRESS, 0, &phy_reg);
-//
-//  /* Set Bit 14 (Loopback Mode) */
-//  phy_reg |= (1U << 14);
-//
-//  /* Write back to Register 0 */
-//  HAL_ETH_WritePHYRegister(&heth, LAN8742A_PHY_ADDRESS, 0, phy_reg);
-
-  /* Disable Auto Negotiation 
-    NOTE: required for the PHY to output signals on RJ45
-  */
-  uint32_t reg0 = 0;
-  HAL_ETH_ReadPHYRegister(&heth, 0, 0, &reg0);
-  reg0 &= ~(1U << 12); // Disable Auto-Negotiation (Bit 12)
-  reg0 |=  (1U << 13); // Force 100 Mbps (Bit 13)
-  reg0 |=  (1U << 8);  // Force Full Duplex (Bit 8)
-  HAL_ETH_WritePHYRegister(&heth, 0, 0, reg0);
-
-  HAL_Delay(10);
-
-  uint32_t what_reg = 0;
-  HAL_ETH_ReadPHYRegister(&heth, 0, 0, &what_reg);
-
-  uint32_t what_mode = 0;
-  HAL_ETH_ReadPHYRegister(&heth, 0, 17, &what_mode);
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-<<<<<<< Updated upstream:Src/main.c
   while (1)
   {
     /* USER CODE END WHILE */
@@ -388,27 +289,6 @@ int main(void)
 
 	  HAL_GPIO_TogglePin(HEART_GPIO_Port, HEART_Pin);
 	  HAL_Delay(2000);
-=======
-  while (1) {
-  /* Read a received packet from the Ethernet buffers and send it
-  to the lwIP for handling */
-  Test_ETH_Transmit();
-  HAL_GPIO_TogglePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin);
-  HAL_Delay(1000);
-
-//  ethernetif_input(&gnetif);
-//  /* Handle timeouts */
-//  sys_check_timeouts();
-// #if LWIP_NETIF_LINK_CALLBACK
-//  Ethernet_Link_Periodic_Handle(&gnetif);
-// #endif
-// #if LWIP_DHCP
-//  DHCP_Periodic_Handle(&gnetif);
-// #endif
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
   }
   /* USER CODE END 3 */
 }
@@ -424,35 +304,23 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-<<<<<<< Updated upstream:Src/main.c
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
-=======
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE0);
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-<<<<<<< Updated upstream:Src/main.c
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_CSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV2;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-=======
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_CSI;
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
   RCC_OscInitStruct.CSIState = RCC_CSI_ON;
   RCC_OscInitStruct.CSICalibrationValue = RCC_CSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLL1_SOURCE_CSI;
   RCC_OscInitStruct.PLL.PLLM = 1;
-<<<<<<< Updated upstream:Src/main.c
   RCC_OscInitStruct.PLL.PLLN = 32;
-=======
-  RCC_OscInitStruct.PLL.PLLN = 125;
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
   RCC_OscInitStruct.PLL.PLLP = 2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
@@ -469,32 +337,20 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
                               |RCC_CLOCKTYPE_PCLK3;
-<<<<<<< Updated upstream:Src/main.c
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
-=======
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB3CLKDivider = RCC_HCLK_DIV1;
 
-<<<<<<< Updated upstream:Src/main.c
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
-=======
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
   {
     Error_Handler();
   }
 
   /** Configure the programming delay
   */
-<<<<<<< Updated upstream:Src/main.c
   __HAL_FLASH_SET_PROGRAM_DELAY(FLASH_PROGRAMMING_DELAY_0);
-=======
-  __HAL_FLASH_SET_PROGRAM_DELAY(FLASH_PROGRAMMING_DELAY_2);
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 }
 
 /**
@@ -502,11 +358,7 @@ void SystemClock_Config(void)
   * @param None
   * @retval None
   */
-<<<<<<< Updated upstream:Src/main.c
 static void MX_ETH_Init(void)
-=======
-void MX_ETH_Init(void)
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 {
 
   /* USER CODE BEGIN ETH_Init 0 */
@@ -600,7 +452,6 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-<<<<<<< Updated upstream:Src/main.c
   HAL_GPIO_WritePin(HEART_GPIO_Port, HEART_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : HEART_Pin */
@@ -609,16 +460,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(HEART_GPIO_Port, &GPIO_InitStruct);
-=======
-  HAL_GPIO_WritePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : HEARTBEAT_Pin */
-  GPIO_InitStruct.Pin = HEARTBEAT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(HEARTBEAT_GPIO_Port, &GPIO_InitStruct);
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -626,7 +467,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-<<<<<<< Updated upstream:Src/main.c
 // Track allocation indexes manually for our static buffer array
 static uint32_t rx_alloc_idx = 0;
 
@@ -658,42 +498,6 @@ void HAL_ETH_RxLinkCallback(void **pStart, void **pEnd, uint8_t *buff, uint16_t 
 /* USER CODE END 4 */
 
 
-=======
-/**
- * @brief Setup the network interface
- * None
- * @retval None
- */
-static void Netif_Config(void) {
- ip_addr_t ipaddr;
- ip_addr_t netmask;
- ip_addr_t gw;
-#if LWIP_DHCP
- ip_addr_set_zero_ip4(&ipaddr);
- ip_addr_set_zero_ip4(&netmask);
- ip_addr_set_zero_ip4(&gw);
-#else
- /* IP address default setting */
- IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
- IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
- IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-#endif
- /* add the network interface */
- netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init,
- &ethernet_input);
- /* Registers the default network interface */
- netif_set_default(&gnetif);
-#if LWIP_NETIF_LINK_CALLBACK
- netif_set_link_callback(&gnetif, ethernet_link_status_updated);
-#if LWIP_DHCP
- dhcp_start(&gnetif);
- ethernet_link_status_updated(&gnetif);
-#endif
-#endif
-}
-/* USER CODE END 4 */
-
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
  /* MPU Configuration */
 
 void MPU_Config(void)
@@ -728,76 +532,8 @@ void MPU_Config(void)
 
 }
 
-<<<<<<< Updated upstream:Src/main.c
 /**
   * @brief  This function is executed in case of error occurrence.
-=======
-/* Standard 64-byte raw Ethernet test frame */
-void Test_ETH_Transmit(void)
-{
-  /* Aligned buffer for DMA safety */
-  __attribute__((aligned(32))) static uint8_t tx_buffer[64];
-
-  /* 1. Destination MAC: Broadcast (FF:FF:FF:FF:FF:FF) */
-  memset(&tx_buffer[0], 0xFF, 6);
-
-  /* 2. Source MAC: STM32 MAC Address (00:80:E1:00:00:00) */
-  tx_buffer[6]  = 0x00;
-  tx_buffer[7]  = 0x80;
-  tx_buffer[8]  = 0xE1;
-  tx_buffer[9]  = 0x00;
-  tx_buffer[10] = 0x00;
-  tx_buffer[11] = 0x00;
-
-  /* 3. EtherType: Custom / Test (0x88B5 - IEEE Std 802.1 Local Experimental) */
-  tx_buffer[12] = 0x88;
-  tx_buffer[13] = 0xB5;
-
-  /* 4. Payload: Pattern fill */
-  for (int i = 14; i < 64; i++) {
-    tx_buffer[i] = (uint8_t)(i - 14);
-  }
-
-  /* 5. Set up HAL Tx Packet Configuration Structure */
-  ETH_TxPacketConfig TxConfig = {0};
-  TxConfig.Attributes   = ETH_TX_PACKETS_FEATURES_CRCPAD; // MCU generates CRC
-  TxConfig.ChecksumCtrl = ETH_CHECKSUM_DISABLE;          // Disable IP checksum offload for raw frame
-  TxConfig.CRCPadCtrl   = ETH_CRC_PAD_INSERT;
-  TxConfig.Length       = 64;
-
-  struct __ETH_BufferTypeDef eth_buff = {
-		  .buffer = tx_buffer,
-		  .len = 64,
-		  .next = NULL,
-  };
-
-  TxConfig.TxBuffer     = &eth_buff;
-
-  /* 6. Transmit Frame */
-  HAL_StatusTypeDef status = HAL_ETH_Transmit(&heth, &TxConfig, 1000);
-
-  if (status == HAL_OK) {
-    /* Success: Frame pushed to DMA buffer */
-  } else {
-    /* Error: HAL_TIMEOUT, HAL_BUSY, or HAL_ERROR */
-	  while(1)
-	  {
-		  HAL_GPIO_TogglePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin);
-		  HAL_Delay(100);
-		  HAL_GPIO_TogglePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin);
-		  HAL_Delay(100);
-		  HAL_GPIO_TogglePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin);
-		  HAL_Delay(100);
-		  HAL_GPIO_TogglePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin);
-		  HAL_Delay(100);
-	  }
-  }
-}
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @param None
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/main.c
   * @retval None
   */
 void Error_Handler(void)

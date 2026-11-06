@@ -97,7 +97,6 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* heth)
     __HAL_RCC_GPIOB_CLK_ENABLE();
     /**ETH GPIO Configuration
     PC1     ------> ETH_MDC
-<<<<<<< Updated upstream:Src/stm32h5xx_hal_msp.c
     PA1     ------> ETH_REF_CLK
     PA2     ------> ETH_MDIO
     PA5     ------> ETH_TX_EN
@@ -106,16 +105,6 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* heth)
     PC5     ------> ETH_RXD1
     PB12     ------> ETH_TXD0
     PB15     ------> ETH_TXD1
-=======
-    PA1     ------> ETH_RMII_REF_CLK
-    PA2     ------> ETH_MDIO
-    PA5     ------> ETH_RMII_TX_EN
-    PA7     ------> ETH_RMII_CRS_DV
-    PC4     ------> ETH_RMII_RXD0
-    PC5     ------> ETH_RMII_RXD1
-    PB12     ------> ETH_RMII_TXD0
-    PB15     ------> ETH_RMII_TXD1
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/stm32h5xx_hal_msp.c
     */
     GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_4|GPIO_PIN_5;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -138,12 +127,9 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* heth)
     GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-<<<<<<< Updated upstream:Src/stm32h5xx_hal_msp.c
     /* ETH interrupt Init */
     HAL_NVIC_SetPriority(ETH_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(ETH_IRQn);
-=======
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/stm32h5xx_hal_msp.c
     /* USER CODE BEGIN ETH_MspInit 1 */
 
     /* USER CODE END ETH_MspInit 1 */
@@ -172,7 +158,6 @@ void HAL_ETH_MspDeInit(ETH_HandleTypeDef* heth)
 
     /**ETH GPIO Configuration
     PC1     ------> ETH_MDC
-<<<<<<< Updated upstream:Src/stm32h5xx_hal_msp.c
     PA1     ------> ETH_REF_CLK
     PA2     ------> ETH_MDIO
     PA5     ------> ETH_TX_EN
@@ -181,16 +166,6 @@ void HAL_ETH_MspDeInit(ETH_HandleTypeDef* heth)
     PC5     ------> ETH_RXD1
     PB12     ------> ETH_TXD0
     PB15     ------> ETH_TXD1
-=======
-    PA1     ------> ETH_RMII_REF_CLK
-    PA2     ------> ETH_MDIO
-    PA5     ------> ETH_RMII_TX_EN
-    PA7     ------> ETH_RMII_CRS_DV
-    PC4     ------> ETH_RMII_RXD0
-    PC5     ------> ETH_RMII_RXD1
-    PB12     ------> ETH_RMII_TXD0
-    PB15     ------> ETH_RMII_TXD1
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/stm32h5xx_hal_msp.c
     */
     HAL_GPIO_DeInit(GPIOC, GPIO_PIN_1|GPIO_PIN_4|GPIO_PIN_5);
 
@@ -198,11 +173,8 @@ void HAL_ETH_MspDeInit(ETH_HandleTypeDef* heth)
 
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_12|GPIO_PIN_15);
 
-<<<<<<< Updated upstream:Src/stm32h5xx_hal_msp.c
     /* ETH interrupt DeInit */
     HAL_NVIC_DisableIRQ(ETH_IRQn);
-=======
->>>>>>> Stashed changes:RoveNodeLWIP/Core/Src/stm32h5xx_hal_msp.c
     /* USER CODE BEGIN ETH_MspDeInit 1 */
 
     /* USER CODE END ETH_MspDeInit 1 */
