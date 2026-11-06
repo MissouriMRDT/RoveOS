@@ -1,0 +1,429 @@
+///*
+// * lwip.c
+// *
+// *  Created on: Sep 2, 2026
+// *      Author: fanta
+// */
+///* Includes ------------------------------------------------------------------*/
+//#include "lwip.h"
+//#include "lwip/init.h"
+//#include "lwip/netif.h"
+//#if defined ( __CC_ARM ) /* MDK ARM Compiler */
+//#include "lwip/sio.h"
+//#endif /* MDK ARM Compiler */
+//#include "ethernetif.h"
+//#include "lwip/debug.h"
+//#include "lwip/stats.h"
+//#include "lwip/tcp.h"
+//#include "lwip/dhcp.h"
+//#include <string.h>
+//#include "main.h"
+//
+////#define HEARTBEAT_GPIO_Port LED_GREEN_GPIO_Port
+////#define HEARTBEAT_GPIO_Port LED_YELLOW_GPIO_Port
+////#define HEARTBEAT_Pin LED_GREEN_Pin
+////#define HEARTBEAT_Pin LED_YELLOW_Pin
+//
+//struct netif gnetif;
+//uint32_t EthernetLinkTimer;
+//#if LWIP_DHCP
+//#define DHCP_OFF (uint8_t) 0
+//#define DHCP_START (uint8_t) 1
+//#define DHCP_WAIT_ADDRESS (uint8_t) 2
+//#define DHCP_ADDRESS_ASSIGNED (uint8_t) 3
+//#define DHCP_TIMEOUT (uint8_t) 4
+//#define DHCP_LINK_DOWN (uint8_t) 5
+//#define MAX_DHCP_TRIES 4
+//uint32_t DHCPfineTimer = 0;
+//uint8_t DHCP_state = DHCP_OFF;
+//#endif
+//
+//void ethernet_link_status_updated(struct netif *netif)
+//{
+// if (netif_is_link_up(netif))
+// {
+// /* Update DHCP state machine */
+// DHCP_state = DHCP_START;
+// }
+// else
+// {
+// /* Update DHCP state machine */
+// DHCP_state = DHCP_LINK_DOWN;
+// }
+//}
+//
+//#if LWIP_NETIF_LINK_CALLBACK
+///**
+// * @brief Ethernet Link periodic check
+// * netif
+// * @retval None
+// */
+//void Ethernet_Link_Periodic_Handle(struct netif *netif)
+//{
+// /* Ethernet Link every 100ms */
+// if (HAL_GetTick() - EthernetLinkTimer >= 100)
+// {
+// EthernetLinkTimer = HAL_GetTick();
+// ethernet_link_check_state(netif);
+// }
+//}
+//#endif
+//
+//#if LWIP_DHCP
+///**
+// * @brief DHCP_Process_Handle
+// * None
+// * @retval None
+// */
+//void DHCP_Process(struct netif *netif)
+//{
+// ip_addr_t ipaddr;
+// ip_addr_t netmask;
+// ip_addr_t gw;
+// struct dhcp *dhcp;
+// switch (DHCP_state)
+// {
+// case DHCP_START:
+// {
+// printf("State: Looking for DHCP server ...\n");
+//// HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+//// HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+// HAL_GPIO_WritePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin, GPIO_PIN_RESET);
+// ip_addr_set_zero_ip4(&netif->ip_addr);
+// ip_addr_set_zero_ip4(&netif->netmask);
+// ip_addr_set_zero_ip4(&netif->gw);
+// dhcp_start(netif);
+// DHCP_state = DHCP_WAIT_ADDRESS;
+// }
+// break;
+// case DHCP_WAIT_ADDRESS:
+// {
+// if (dhcp_supplied_address(netif))
+// {
+// DHCP_state = DHCP_ADDRESS_ASSIGNED;
+//// HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
+//// HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+// HAL_GPIO_WritePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin, GPIO_PIN_RESET);
+// char ip_str[16];
+// ip4_addr_set_u32(&ipaddr, netif_ip4_addr(netif)->addr);
+// ip4addr_ntoa_r(&ipaddr, ip_str, sizeof(ip_str));
+// printf("IPv4 address: %s\n", ip_str);
+// }
+// else
+// {
+// dhcp = (struct dhcp *)netif_get_client_data(netif, LWIP_NETIF_CLIENT_DATA_INDEX_DHCP);
+// /* DHCP timeout */
+// if (dhcp->tries > MAX_DHCP_TRIES)
+// {
+// DHCP_state = DHCP_TIMEOUT;
+// /* Static address used */
+// IP_ADDR4(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
+// IP_ADDR4(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
+// IP_ADDR4(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+// netif_set_addr(netif, &ipaddr, &netmask, &gw);
+// char ip_str[16];
+// ip4addr_ntoa_r(&ipaddr, ip_str, sizeof(ip_str));
+// printf("DHCP Timeout !! \n");
+// printf("Static IP address: %s\n", ip_str);
+//// HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin,
+//// GPIO_PIN_SET);
+//// HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin,
+//// GPIO_PIN_RESET);
+// HAL_GPIO_WritePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin, GPIO_PIN_RESET);
+// }
+// }
+// }
+// break;
+// case DHCP_LINK_DOWN:
+// {
+// DHCP_state = DHCP_OFF;
+//// HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+//// HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+// HAL_GPIO_WritePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin, GPIO_PIN_RESET);
+// }
+// break;
+// default: break;
+// }
+//}
+//
+///**
+// * @brief DHCP periodic check
+// * netif
+// * @retval None
+// */
+//void DHCP_Periodic_Handle(struct netif *netif)
+//{
+// /* Fine DHCP periodic process every 500ms */
+// if (HAL_GetTick() - DHCPfineTimer >= DHCP_FINE_TIMER_MSECS)
+// {
+// DHCPfineTimer = HAL_GetTick();
+// /* process DHCP state machine */
+// DHCP_Process(netif);
+// }
+//}
+//
+//
+//
+//#endif
+
+/*
+ * lwip.c
+ *
+ *  Created on: Jun 14, 2024
+ *      Author: dacostal
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include "lwip.h"
+#include "lwip/init.h"
+#include "lwip/netif.h"
+#if defined ( __CC_ARM )  /* MDK ARM Compiler */
+#include "lwip/sio.h"
+#endif /* MDK ARM Compiler */
+#include "ethernetif.h"
+
+#include "lwip/debug.h"
+#include "lwip/stats.h"
+#include "lwip/tcp.h"
+#include "lwip/dhcp.h"
+#include <string.h>
+#include "main.h"
+
+struct netif gnetif;
+
+uint32_t EthernetLinkTimer;
+
+
+#define DHCP_OFF                   (uint8_t) 0
+#define DHCP_START                 (uint8_t) 1
+#define DHCP_WAIT_ADDRESS          (uint8_t) 2
+#define DHCP_ADDRESS_ASSIGNED      (uint8_t) 3
+#define DHCP_TIMEOUT               (uint8_t) 4
+#define DHCP_LINK_DOWN             (uint8_t) 5
+#define MAX_DHCP_TRIES  4
+uint32_t DHCPfineTimer = 0;
+uint8_t DHCP_state = DHCP_OFF;
+
+#include "lwip/udp.h"
+
+static struct udp_pcb *upcb;
+
+void udp_send_test_packet()
+{
+    struct udp_pcb *my_pcb;
+    struct pbuf *p;
+    ip_addr_t DestIPaddr;
+    uint16_t DestPort = 5000;    // The port your laptop tool is listening on
+    uint16_t LocalPort = 5000;   // The port your Nucleo binds to
+
+    char *msg = "Hello from RoveNode lwIP!";
+    uint16_t msg_len = strlen(msg);
+
+    /* 1. Create a new UDP control block structure */
+    my_pcb = udp_new();
+
+    if (my_pcb != NULL)
+    {
+        /* 2. Set up the target destination IP address (Your Laptop's IP) */
+        IP4_ADDR(&DestIPaddr, 192, 168, 1, 100); // <-- Change to your laptop's actual IP
+
+        /* 3. Bind the local port (optional but good practice) */
+        udp_bind(my_pcb, IP_ADDR_ANY, LocalPort);
+
+        /* 4. Connect the PCB to the remote IP and Port */
+        err_t err = udp_connect(my_pcb, &DestIPaddr, DestPort);
+
+        if (err == ERR_OK)
+        {
+            /* 5. Allocate an lwIP packet buffer (pbuf) from the RAM pool */
+            // RAM pool type ensures contiguous memory space for the payload string
+            p = pbuf_alloc(PBUF_TRANSPORT, msg_len, PBUF_RAM);
+
+            if (p != NULL)
+            {
+                /* 6. Copy your text string data into the allocated pbuf payload pointer */
+                memcpy(p->payload, msg, msg_len);
+
+                /* 7. Transmit the UDP packet payload over the network driver */
+                udp_send(my_pcb, p);
+
+                /* 8. CRITICAL: Free the pbuf pointer structure immediately to prevent RAM leaks */
+                pbuf_free(p);
+            }
+        }
+
+        /* 9. Delete the PCB instance if you don't intend to stay permanently connected */
+        udp_remove(my_pcb);
+    }
+}
+
+/* Callback function executed when a UDP packet is received */
+void udp_led_recv_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
+{
+	udp_send_test_packet();
+	if (p != NULL)
+    {
+        /* Check if packet matches "LED_ON" */
+        if (strncmp((char *)p->payload, "LED_ON", 6) == 0)
+        {
+            HAL_GPIO_WritePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin, GPIO_PIN_SET);
+        }
+        /* Check if packet matches "LED_OFF" */
+        else if (strncmp((char *)p->payload, "LED_OFF", 7) == 0)
+        {
+            HAL_GPIO_WritePin(HEARTBEAT_GPIO_Port, HEARTBEAT_Pin, GPIO_PIN_RESET);
+        }
+
+        /* Free the received pbuf buffer */
+        pbuf_free(p);
+    }
+}
+
+/* Initialize UDP Server listening on Port 5000 */
+void udp_led_server_init(void)
+{
+    upcb = udp_new();
+    if (upcb != NULL)
+    {
+        /* Bind to port 5000 on any IP address */
+        err_t err = udp_bind(upcb, IP_ADDR_ANY, 5000);
+        if (err == ERR_OK)
+        {
+            /* Set receive callback */
+            udp_recv(upcb, udp_led_recv_callback, NULL);
+        }
+    }
+}
+
+void ethernet_link_status_updated(struct netif *netif)
+{
+  if (netif_is_link_up(netif))
+ {
+    /* Update DHCP state machine */
+    DHCP_state = DHCP_START;
+  }
+  else
+  {
+    /* Update DHCP state machine */
+    DHCP_state = DHCP_LINK_DOWN;
+  }
+}
+
+#if LWIP_NETIF_LINK_CALLBACK
+/**
+  * @brief  Ethernet Link periodic check
+  * @param  netif
+  * @retval None
+  */
+void Ethernet_Link_Periodic_Handle(struct netif *netif)
+{
+  /* Ethernet Link every 100ms */
+  if (HAL_GetTick() - EthernetLinkTimer >= 100)
+  {
+    EthernetLinkTimer = HAL_GetTick();
+    ethernet_link_check_state(netif);
+  }
+}
+#endif
+
+#if LWIP_DHCP
+/**
+  * @brief  DHCP_Process_Handle
+  * @param  None
+  * @retval None
+  */
+void DHCP_Process(struct netif *netif)
+{
+  ip_addr_t ipaddr;
+  ip_addr_t netmask;
+  ip_addr_t gw;
+
+  struct dhcp *dhcp;
+
+  switch (DHCP_state)
+  {
+    case DHCP_START:
+    {
+		printf("State: Looking for DHCP server ...\n");
+		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+
+      ip_addr_set_zero_ip4(&netif->ip_addr);
+      ip_addr_set_zero_ip4(&netif->netmask);
+      ip_addr_set_zero_ip4(&netif->gw);
+      dhcp_start(netif);
+      DHCP_state = DHCP_WAIT_ADDRESS;
+    }
+    break;
+
+  case DHCP_WAIT_ADDRESS:
+    {
+      if (dhcp_supplied_address(netif))
+      {
+        DHCP_state = DHCP_ADDRESS_ASSIGNED;
+
+		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);
+        char ip_str[16];
+        ip4_addr_set_u32(&ipaddr, netif_ip4_addr(netif)->addr);
+        ip4addr_ntoa_r(&ipaddr, ip_str, sizeof(ip_str));
+        printf("IPv4 address: %s\n", ip_str);
+      }
+      else
+      {
+        dhcp = (struct dhcp *)netif_get_client_data(netif, LWIP_NETIF_CLIENT_DATA_INDEX_DHCP);
+
+        /* DHCP timeout */
+        if (dhcp->tries > MAX_DHCP_TRIES)
+        {
+          DHCP_state = DHCP_TIMEOUT;
+
+          /* Static address used */
+          IP_ADDR4(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
+          IP_ADDR4(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
+          IP_ADDR4(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+          netif_set_addr(netif, &ipaddr, &netmask, &gw);
+          char ip_str[16];
+          ip4addr_ntoa_r(&ipaddr, ip_str, sizeof(ip_str));
+
+			printf("DHCP Timeout !! \n");
+			printf("Static IP address: %s\n", ip_str);
+			HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin,
+					GPIO_PIN_SET);
+			HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin,
+					GPIO_PIN_RESET);
+
+        }
+      }
+    }
+    break;
+  case DHCP_LINK_DOWN:
+    {
+      DHCP_state = DHCP_OFF;
+
+		HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);
+    }
+    break;
+  default: break;
+  }
+}
+
+/**
+  * @brief  DHCP periodic check
+  * @param  netif
+  * @retval None
+  */
+
+void DHCP_Periodic_Handle(struct netif *netif)
+{
+  /* Fine DHCP periodic process every 500ms */
+  if (HAL_GetTick() - DHCPfineTimer >= DHCP_FINE_TIMER_MSECS)
+  {
+    DHCPfineTimer =  HAL_GetTick();
+    /* process DHCP state machine */
+    DHCP_Process(netif);
+  }
+}
+#endif
+

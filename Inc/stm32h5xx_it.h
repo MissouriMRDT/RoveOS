@@ -55,7 +55,10 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
+<<<<<<< Updated upstream:Inc/stm32h5xx_it.h
 void ETH_IRQHandler(void);
+=======
+>>>>>>> Stashed changes:RoveNodeLWIP/Core/Inc/stm32h5xx_it.h
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
