@@ -52,6 +52,10 @@ extern "C" {
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 <<<<<<< Updated upstream:Inc/main.h
+<<<<<<< Updated upstream:Inc/main.h
+=======
+void MX_ETH_Init(void);
+>>>>>>> Stashed changes:RoveNodeLWIP/Core/Inc/main.h
 =======
 void MX_ETH_Init(void);
 >>>>>>> Stashed changes:RoveNodeLWIP/Core/Inc/main.h
@@ -62,8 +66,13 @@ void MX_ETH_Init(void);
 
 /* Private defines -----------------------------------------------------------*/
 <<<<<<< Updated upstream:Inc/main.h
+<<<<<<< Updated upstream:Inc/main.h
 #define HEART_Pin GPIO_PIN_0
 #define HEART_GPIO_Port GPIOC
+=======
+#define HEARTBEAT_Pin GPIO_PIN_0
+#define HEARTBEAT_GPIO_Port GPIOC
+>>>>>>> Stashed changes:RoveNodeLWIP/Core/Inc/main.h
 =======
 #define HEARTBEAT_Pin GPIO_PIN_0
 #define HEARTBEAT_GPIO_Port GPIOC
