@@ -66,6 +66,8 @@ static void MX_ETH_Init(void);
 static void MX_ICACHE_Init(void);
 /* USER CODE BEGIN PFP */
 
+void TransmitTestPacket(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -167,131 +169,21 @@ int main(void)
   	  }
     }
 
-    // Loopback test
-    uint32_t phy_reg_val = 0;
 
-    // 1. Read current Register 0 value from LAN8742A (Default PHY Address is usually 0)
-    HAL_ETH_ReadPHYRegister(&heth, 0, 0, &phy_reg_val);
+    uint32_t reg0 = 0;
+    HAL_ETH_ReadPHYRegister(&heth, 0, 0, &reg0);
+    reg0 &= ~(1U << 12); // Disable Auto-Negotiation (Bit 12)
+    reg0 |=  (1U << 13); // Force 100 Mbps (Bit 13)
+    reg0 |=  (1U << 8);  // Force Full Duplex (Bit 8)
+    HAL_ETH_WritePHYRegister(&heth, 0, 0, reg0);
 
-    // 2. Set Bit 14 (Loopback) high
-    phy_reg_val |= (1 << 14);
-
-    // 3. Write back to Register 0
-    HAL_ETH_WritePHYRegister(&heth, 0, 0, phy_reg_val);
-
-    // 4. (Optional) Read back to verify the bit was written successfully
-    HAL_ETH_ReadPHYRegister(&heth, 0, 0, &phy_reg_val);
-    if (phy_reg_val & (1 << 14)) {
-        // PHY loopback is enabled successfully!
-    } else {
-  	  while(1)
-  	  {
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(1000);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(1000);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(1000);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(1000);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(1000);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(2000);
-  	  }
-    }
-
-    // Enable MAC-level loopback (Bit 12 'LM' in ETH_MACCR)
-    heth.Instance->MACCR |= ETH_MACCR_LM;
-
-
-  //   1. Prepare a dummy frame buffer (Minimum Ethernet frame size is 60 bytes)
-    ETH_BufferTypeDef TxConfig;
-    ETH_TxPacketConfig TxPacketConfig;
-    uint8_t TxBuffer[TX_PACKET_SIZE];
-
-    /* 1. Build a dummy Ethernet Frame */
-    /* Destination MAC (6 bytes) - e.g., Broadcast */
-    memset(&TxBuffer[0], 0xFF, 6);
-    /* Source MAC (6 bytes) */
-    memset(&TxBuffer[6], 0x02, 6);
-    /* Length/Type field (2 bytes) - Custom experimental type */
-    TxBuffer[12] = 0x88;
-    TxBuffer[13] = 0xB5;
-
-    /* Fill Payload with a pattern (0, 1, 2, 3...) */
-    for(int i = 14; i < TX_PACKET_SIZE; i++)
-    {
-  	  TxBuffer[i] = (uint8_t)(i - 14);
-    }
-
-
-
-    /* 2. Configure the HAL TX structure for STM32H5 */
-    TxConfig.buffer = TxBuffer;
-    TxConfig.len    = TX_PACKET_SIZE;
-    TxConfig.next   = NULL; // Single buffer packet
-
-    memset(&TxPacketConfig, 0, sizeof(ETH_TxPacketConfig));
-    TxPacketConfig.Attributes = ETH_TX_PACKETS_FEATURES_CSUM | ETH_TX_PACKETS_FEATURES_CRCPAD;
-    TxPacketConfig.CRCPadCtrl = ETH_CRC_PAD_INSERT; // Hardware appends CRC
-    TxPacketConfig.TxBuffer   = &TxConfig;
-    TxPacketConfig.Length     = TX_PACKET_SIZE;
-
-    // 3. Transmit the frame
-    if (HAL_ETH_Transmit(&heth, &TxPacketConfig, HAL_MAX_DELAY) == HAL_OK) {
-        // Transmit triggered successfully!
-    } else {
-  	  while(1)
-  	  {
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(100);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(100);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(100);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(2000);
-  	  }
-    }
-
-  //   4. Wait briefly and check the RX side
     HAL_Delay(10);
-    void *rx_payload = NULL;
 
+    uint32_t what_reg = 0;
+    HAL_ETH_ReadPHYRegister(&heth, 0, 0, &what_reg);
 
-    if (HAL_ETH_ReadData(&heth, &rx_payload) == HAL_OK) {
-
-  	  uint8_t *rx_ptr = (uint8_t *)rx_payload;
-
-  	  uint8_t new_rx_buffer[TX_PACKET_SIZE];
-
-  	  for (int i=0; i < TX_PACKET_SIZE; i++)
-  	  {
-  		  new_rx_buffer[i] = rx_ptr[i];
-  	  }
-
-  	  __NOP();
-
-
-
-    } else {
-  	  while(1)
-  	  {
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(200);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(200);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(200);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(200);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(200);
-  		  BSP_LED_Toggle(LED_RED);
-  		  HAL_Delay(2000);
-  	  }
-    }
+    uint32_t what_mode = 0;
+    HAL_ETH_ReadPHYRegister(&heth, 0, 17, &what_mode);
 
   /* USER CODE END 2 */
 
@@ -301,7 +193,13 @@ int main(void)
   while (1)
   {
 
+
     /* USER CODE END WHILE */
+	  BSP_LED_On(LED_RED);
+	  TransmitTestPacket();
+	  HAL_Delay(100);
+	  BSP_LED_Off(LED_RED);
+	  HAL_Delay(2000);
 
     /* USER CODE BEGIN 3 */
   }
@@ -556,6 +454,60 @@ void MPU_Config(void)
   /* Enables the MPU */
   HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
+}
+
+void TransmitTestPacket(void)
+{
+
+	  //   1. Prepare a dummy frame buffer (Minimum Ethernet frame size is 60 bytes)
+	ETH_BufferTypeDef TxConfig;
+	ETH_TxPacketConfig TxPacketConfig;
+	uint8_t TxBuffer[TX_PACKET_SIZE];
+
+	/* 1. Build a dummy Ethernet Frame */
+	/* Destination MAC (6 bytes) - e.g., Broadcast */
+	memset(&TxBuffer[0], 0xFF, 6);
+	/* Source MAC (6 bytes) */
+	memset(&TxBuffer[6], 0x02, 6);
+	/* Length/Type field (2 bytes) - Custom experimental type */
+	TxBuffer[12] = 0x88;
+	TxBuffer[13] = 0xB5;
+
+	/* Fill Payload with a pattern (0, 1, 2, 3...) */
+	for(int i = 14; i < TX_PACKET_SIZE; i++)
+	{
+	  TxBuffer[i] = (uint8_t)(i - 14);
+	}
+
+
+
+	/* 2. Configure the HAL TX structure for STM32H5 */
+	TxConfig.buffer = TxBuffer;
+	TxConfig.len    = TX_PACKET_SIZE;
+	TxConfig.next   = NULL; // Single buffer packet
+
+	memset(&TxPacketConfig, 0, sizeof(ETH_TxPacketConfig));
+	TxPacketConfig.Attributes = ETH_TX_PACKETS_FEATURES_CSUM | ETH_TX_PACKETS_FEATURES_CRCPAD;
+	TxPacketConfig.CRCPadCtrl = ETH_CRC_PAD_INSERT; // Hardware appends CRC
+	TxPacketConfig.TxBuffer   = &TxConfig;
+	TxPacketConfig.Length     = TX_PACKET_SIZE;
+
+	// 3. Transmit the frame
+	if (HAL_ETH_Transmit(&heth, &TxPacketConfig, HAL_MAX_DELAY) == HAL_OK) {
+		// Transmit triggered successfully!
+	} else {
+	  while(1)
+	  {
+		  BSP_LED_Toggle(LED_RED);
+		  HAL_Delay(100);
+		  BSP_LED_Toggle(LED_RED);
+		  HAL_Delay(100);
+		  BSP_LED_Toggle(LED_RED);
+		  HAL_Delay(100);
+		  BSP_LED_Toggle(LED_RED);
+		  HAL_Delay(2000);
+	  }
+	}
 }
 
 /**

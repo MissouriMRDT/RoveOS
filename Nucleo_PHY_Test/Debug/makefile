@@ -61,8 +61,8 @@ all: main-build
 main-build: Nucleo_PHY_Test.elf secondary-outputs
 
 # Tool invocations
-Nucleo_PHY_Test.elf Nucleo_PHY_Test.map: $(OBJS) $(USER_OBJS) /Users/vexas/Documents/GitHub/Nucleo_PHY_Test/STM32H563ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Nucleo_PHY_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"/Users/vexas/Documents/GitHub/Nucleo_PHY_Test/STM32H563ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Nucleo_PHY_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Nucleo_PHY_Test.elf Nucleo_PHY_Test.map: $(OBJS) $(USER_OBJS) /Users/vexas/Documents/GitHub/RoveOS_Nucleo/Nucleo_PHY_Test/STM32H563ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Nucleo_PHY_Test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"/Users/vexas/Documents/GitHub/RoveOS_Nucleo/Nucleo_PHY_Test/STM32H563ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Nucleo_PHY_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
